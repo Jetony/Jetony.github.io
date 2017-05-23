@@ -1,0 +1,56 @@
+<!DOCTYPE html><head>
+<meta charset="utf-8">
+<title>ECharts</title></head><body>
+
+<!-- 为ECharts 准备一个具备大小（宽高）的Dom -->
+<div id="main" style="margin:0 auto;width: 800px;height:400px"></div>
+
+<!-- ECharts 单文件引入-->
+<script src="echarts-all.js"></script>
+<script type="text/javascript">
+
+// 基于准备好的dom，初始化echarts 图表
+var myChart = echarts.init(document.getElementById('main'));
+
+var option = {
+    title : {
+        text: '英雄联盟版本分析',
+        subtext: '7.3版本'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'value',
+            boundaryGap : [0, 0.01]
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            data : ['卡密尔', '杰斯', '卡兹克', '伊芙琳', '泰隆', '格雷福斯', '雷恩加尔', '卡特琳娜', '乐芙兰', '瑞兹']
+        }
+    ],
+    series : [
+        {
+            name:'7.3版本',
+            type:'bar',
+            data:[47, 47, 59, 69, 112, 115, 126, 127, 187, 188]
+        }
+    ]
+};   
+// 为echarts 对象加载数据
+myChart.setOption(option);
+</script></body>

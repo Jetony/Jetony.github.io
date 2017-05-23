@@ -1,0 +1,66 @@
+<!DOCTYPE html><head>
+<meta charset="utf-8">
+<title>ECharts</title></head><body>
+
+<!-- 为ECharts 准备一个具备大小（宽高）的Dom -->
+<div id="main" style="margin:0 auto;width: 600px;height:400px"></div>
+
+<!-- ECharts 单文件引入-->
+<script src="echarts-all.js"></script>
+<script type="text/javascript">
+
+// 基于准备好的dom，初始化echarts 图表
+var myChart = echarts.init(document.getElementById('main'));
+
+var option = {
+    title : {
+        text: '两位玩家的位置',
+        subtext: '八块腹肌的皮皮桶和拥抱深海鲸的少年分别在五个位置上玩的场次数'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['八块腹肌的皮皮桶','拥抱深海鲸的少年']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            data : ['中单', 'ADC', '上单', '辅助', '打野']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'八块腹肌的皮皮桶',
+            type:'bar',
+            data:[12, 16, 16, 88, 320],
+            itemStyle:{  normal:{color:'#00fa9a'} }
+        },
+        {
+            name:'拥抱深海鲸的少年',
+            type:'bar',
+            data:[25, 56, 111, 135, 150],
+            itemStyle:{  normal:{color:'#ffd700'} }
+        }
+    ]
+};
+
+// 为echarts 对象加载数据
+myChart.setOption(option);
+</script></body>

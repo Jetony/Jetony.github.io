@@ -1,0 +1,79 @@
+<!DOCTYPE html><head>
+<meta charset="utf-8">
+<title>ECharts</title></head><body>
+
+<!-- 为ECharts 准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 730px;height:450px"></div>
+
+<!-- ECharts 单文件引入-->
+<script src="echarts-all.js"></script>
+<script type="text/javascript">
+
+// 基于准备好的dom，初始化echarts 图表
+var myChart = echarts.init(document.getElementById('main'));
+var option = {
+    title : {
+        text: '八块腹肌的皮皮桶的本命英雄分析'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['玩某英雄的场次数','胜率']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis :{
+        //axisTick: {length:3},
+        data : ['古拉加斯', '莫甘娜', '伊莉丝', '伊泽瑞尔', '墨菲特', '辛德拉', '阿利斯塔', '雷克塞']
+    },
+    yAxis : [
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: '{value} '
+            }
+        },
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: '{value} '
+            },
+            splitLine : {show : false}
+        }
+    ],
+    series : [
+        {
+            name:'玩某英雄的场次数',
+            type:'bar',
+            data:[298, 76, 22, 16, 16, 12, 12, 1],
+            itemStyle:{  normal:{color:'#ab78ba'} },
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            }
+        },
+        {
+            name:'胜率',
+            type:'line',
+            yAxisIndex: 1,
+            itemStyle:{  normal:{color:'#cd5c5c'} },
+            data:[0.54, 0.57, 0.36, 0.56, 0.5, 0.17, 0.67, 0],
+        }
+    ]
+};
+
+// 为echarts 对象加载数据
+myChart.setOption(option);
+</script></body>

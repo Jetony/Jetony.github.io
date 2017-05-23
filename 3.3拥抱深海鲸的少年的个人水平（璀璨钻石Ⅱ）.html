@@ -1,0 +1,97 @@
+<!DOCTYPE html><head>
+<meta charset="utf-8">
+<title>ECharts</title></head><body>
+
+<!-- 为ECharts 准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 550px;height:400px"></div>
+
+<!-- ECharts 单文件引入-->
+<script src="echarts-all.js"></script>
+<script type="text/javascript">
+
+// 基于准备好的dom，初始化echarts 图表
+var myChart = echarts.init(document.getElementById('main'));
+
+var option = {
+    title : {
+        text: '拥抱深海鲸的少年的个人水平',
+        subtext: '每个位置（ADC、打野、辅助、上单、中单）的各平均值'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        x : 'right',
+        data:['ADC','打野','辅助','上单','中单']
+    },
+    calculable : true,
+    polar : [
+        {
+            indicator : [
+               { text: '输出值', max: 25000},
+               { text: '经济值', max: 15000},
+               { text: '承受伤害值', max: 35000},
+               { text: '参团率', max: 1},
+               { text: 'KDA', max: 10},
+               { text: '死亡数', max: 10}
+            ],
+            radius : 80
+        }
+    ],
+    series : [
+        {
+            name: 'ADC',
+            type: 'radar',
+            data : [
+                {
+                    value : [15685, 11105, 12765, 0.462, 3.8, 5],
+                    name : 'ADC'
+                }
+            ]
+        },
+        {
+            name: '打野',
+            type: 'radar',
+            data : [
+                {
+                    value : [13160, 10811, 17353, 0.446, 5.1, 6],
+                    name : '打野'
+                }
+            ]
+        },
+        {
+            name: '辅助',
+            type: 'radar',
+            data : [
+                {
+                    value : [10181, 8765, 15862, 0.529, 4.1, 3],
+                    name : '辅助'
+                }
+            ]
+        },
+        {
+            name: '上单',
+            type: 'radar',
+            data : [
+                {
+                    value : [14921, 11533, 18779, 0.379, 3, 5],
+                    name : '上单'
+                }
+            ]
+        },
+        {
+            name: '中单',
+            type: 'radar',
+            data : [
+                {
+                    value : [16610, 11289, 14684, 0.466, 3.3, 6],
+                    name : '中单'
+                }
+            ]
+        }
+    ]
+};     
+
+// 为echarts 对象加载数据
+myChart.setOption(option);
+</script></body>

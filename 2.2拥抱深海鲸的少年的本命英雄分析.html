@@ -1,0 +1,83 @@
+<!DOCTYPE html><head>
+<meta charset="utf-8">
+<title>ECharts</title></head><body>
+
+<!-- 为ECharts 准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 800px;height:400px"></div>
+
+<!-- ECharts 单文件引入-->
+<script src="echarts-all.js"></script>
+<script type="text/javascript">
+
+// 基于准备好的dom，初始化echarts 图表
+var myChart = echarts.init(document.getElementById('main'));
+var option = {
+    title : {
+        text: '拥抱深海鲸的少年的本命英雄分析'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['玩某英雄的场次数','胜率']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis :{
+        //axisTick: {length:3},
+		'axisLabel': {
+		'interval':0,                 
+		'rotate': 45
+		 },
+        data : ['卡兹克', '贾克斯', '李青', '布里茨', '格雷福斯', '图奇', '卢锡安', '艾瑞莉娅', '菲奥娜', '伊泽瑞尔', '杰斯', '凯特琳', '烬', '雷克顿', '基兰', '锤石', '库奇', '墨菲特', '崔斯特', '奈德丽', '瑞兹', '劫', '亚索', '金克丝']
+    },
+    yAxis : [
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: '{value} '
+            }
+        },
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: '{value} '
+            },
+            splitLine : {show : false}
+        }
+    ],
+    series : [
+        {
+            name:'玩某英雄的场次数',
+            type:'bar',
+            data:[59, 48, 46, 42, 38, 34, 27, 26, 26, 21, 19, 14, 9, 8, 8, 6, 6, 6, 5, 4, 3, 3, 3, 2],
+            itemStyle:{  normal:{color:'#3cb371'} },
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            }
+        },
+        {
+            name:'胜率',
+            type:'line',
+            yAxisIndex: 1,
+            data:[0.53, 0.63, 0.46, 0.57, 0.32, 0.59, 0.7, 0.54, 0.5, 0.38, 0.53, 0.36, 0.22, 0.38, 0.75, 0.5, 0.5, 0.67, 0.4, 0.5, 0.33, 0.33, 0.67, 0.5],
+            itemStyle:{  normal:{color:'#b8860b'} }
+        }
+    ]
+};
+
+// 为echarts 对象加载数据
+myChart.setOption(option);
+</script></body>
